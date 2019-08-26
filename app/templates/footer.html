@@ -1,0 +1,128 @@
+{% load static %}
+<div class="feedback-block">
+		<div class="content">
+			<div class="bg">
+				<div class="name">Затрудняетесь с выбором? Нужна помощь специалиста?</div>
+				<p>Просто напишите свой номер телефона и наш сотрудник Вам оперативно поможет</p>
+				<form action="/call/" method="POST">
+					{% csrf_token %}
+					<input type="text" id="id_phone" name="phone" placeholder="Ваш номер телефона">
+					<button class="b1">ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer class="footer">
+		<div class="wrap">
+			<div class="flex">
+				<nav>
+					<p>Информация для покупателей</p>
+					<ul>
+						<li><a href="/garantee">ИНФОРМАЦИЯ ДЛЯ ПОКУПАТЕЛЯ</a></li>
+						<li><a href="/delivery">ДОСТАВКА И ОПЛАТА</a></li>
+						<li><a href="/news">АКЦИИ</a></li>
+						<li><a href="/garantee">ВОЗВРАТ И ОБМЕН ТОВАРА</a></li>
+						<li><a href="/faq">ВОПРОСЫ И ОТВЕТЫ</a></li>
+						<li><a href="/contacts">КОНТАКТЫ</a></li>
+						<li><a href="/about">О НАС</a></li>
+						<li><a href="/news">СТАТЬИ И НОВОСТИ</a></li>
+					</ul>
+				</nav>
+				<nav>
+
+								
+
+					<p>Каталог товара</p>
+					<ul>
+						{% for i in category %}
+						<li><a href="/{{i.get_absolute_url}}">{{i.name}}</a></li>
+						{% endfor %}
+						<!-- <li><a href="#">КАТАЛОГ ТОВАРА 2</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 3</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 4</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 5</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 6</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 7</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 8</a></li> -->
+					</ul>
+				</nav>
+				<div class="col">
+					<p>Подпишитесь на нашу рассылку</p>
+					<form action="/subscrible/" method="POST">
+						 {% csrf_token %}
+
+
+						<input type="text" id="id_name" name="name" placeholder="ВАШ  E-MAIL">
+						<button>ПОДПИСАТЬСЯ</button>
+					</form>
+					<div class="social">
+						<p>Мы в социальных сетях:</p>
+						<a href="https://www.instagram.com/vsempostel/" target="_blank"><img src="{% static 'img/social1.png'%}"></a>
+						<a href="https://vk.com/vsempostel" target="_blank"><img src="{% static 'img/social2.png'%}"></a>
+						<a href="https://twitter.com/vsempostel" target="_blank"><img src="{% static 'img/social3.png'%}"></a>
+					</div>
+				</div>
+				<div class="col">
+					<p>Контакты</p>
+					<a href="tel: 8 (3452) 500 - 903" class="tel">8 (3452) 500 - 903</a>
+					<div class="button">
+						<p>г. Тюмень,ул. 50 лет Октября д. 14<br/>ТЦ «Магеллан», 3-й этаж</p>
+						<button>ЗАКАЗАТЬ ЗВОНОК</button>
+					</div>
+					<div class="hours">
+						<p>Режим работы:</p>
+						<div class="b1">ЕЖЕДНЕВНО</div>
+						<div class="b2">С 10:00 - 22:00</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- <div class="popup" style="display: block;">
+		<div class="window">
+			<div class="added">
+				<p>Обратный звонок</p>
+				<form>
+					<input type="text" placeholder="Ваше имя*">
+					<input type="text" placeholder="+7 (   )__ -__-___*">
+					<textarea placeholder="Здесь можно учточнить время звонка или указать дополнительную информацию"></textarea>
+					<div class="agree">
+						<input type="checkbox" id="a"><label for="a">Даю согласие на обработку данных</label>
+					</div>
+					<button class="b1">ОТПРАВИТЬ</button>
+				</form>
+			</div>
+		</div>
+	</div> -->
+	<div class="popup added">
+		<div class="window">
+			<div class="added">
+				<p>Товар  успешно добавлен в Вашу корзину</p>
+				<!-- <img src="img/added.jpg"> -->
+				<div class="flex">
+					<button class="b1" onclick="window.location.href='/basket'">В КОРЗИНУ</button>
+					<button class="b2" onClick="window.location.reload()">ПРОДОЛЖИТЬ ПОКУПКИ</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="popup callback">
+		<div class="window">
+			<div class="added">
+				<p>Обратный звонок</p>
+				<form action="/call/" method="POST">
+					{% csrf_token %}
+					<input type="text" id="id_name" name="name" placeholder="Ваше имя*">
+					<input type="text" id="id_phone" name="phone" placeholder="+7 (   )__ -__-___*">
+					<textarea id="id_questions" name="questions" placeholder="Здесь можно учточнить время звонка или указать дополнительную информацию"></textarea>
+					<div class="agree">
+						<input type="checkbox" id="a" required><label for="a">Даю согласие на обработку данных</label>
+					</div>
+					<button class="b1">ОТПРАВИТЬ</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<a href="#">Главная / Мой кабинет/Текущие заказы/Заказ № 25684</a>
+		</div>
+		<div class="back-link b">
+			<a href="#">Вернуться в список заказов</a>
+		</div>
+		<div class="cabinet-orders">
+			<h1>Отмена заказа № 25684 от 22.05.2019 </h1>
+			<form>
+				<p>Вы уверены, что хотите отменить  заказ # № 25684 </p>
+				<p class="bold">Отмена заказа необратима</p>
+				<textarea placeholder="Укажите, пожалуйста, причину отмены заказа:"></textarea>
+				<div class="button">
+					<button>ОТМЕНИТЬ  ЗАКАЗ</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

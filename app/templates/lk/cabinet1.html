@@ -1,0 +1,18 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<a href="#">Главная / Личный кабинет</a>
+		</div>
+		<nav class="cabinet-menu">
+			<a href="/orders">ТЕКУЩИЕ ЗАКАЗЫ</a>
+			<a href="/profile">ЛИЧНЫЕ ДАННЫЕ</a>
+			<!-- <a href="/cabinet5">ПОДПИСКИ</a> -->
+			<!-- <a href="/history">ИСТОРИЯ ЗАКАЗОВ</a> -->
+			<a href="/basket">КОРЗИНА</a>
+		</nav>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

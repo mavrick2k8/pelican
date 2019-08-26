@@ -1,0 +1,28 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<a href="/">Главная/ </a><a href="/lk">Мой кабинет/ </a><a href="/profile">Профиль/ </a>
+		</div>
+		<div class="back-link b">
+			<a href="/lk">Вернуться в кабинет</a>
+		</div>
+		<div class="cabinet-orders">
+			<h1>Профиль пользователя</h1>
+			<form action="/lk">
+				<div class="label">ФИО*</div>
+				<input type="text" value="{{usern.first_name}} {{usern.last_name}}">
+				<div class="label">Телефон пользователя*</div>
+				<input type="text" value="{{usern.numberphone}}">
+				<div class="label">Почта пользователя*</div>
+				<input type="text" value="{{usern.email}}">
+				<div class="button">
+					<button >СОХРАНИТЬ ИЗМЕНЕНИЯ</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

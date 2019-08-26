@@ -1,0 +1,42 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<!-- <a href="#">Главная / Вопросы и ответы</a> -->
+			<a href="/">Главная/ </a><a href="/contacts">Контакты </a>
+		</div>
+		<div class="contacts-page flex">
+			<div class="info">
+				<div class="name">
+					Магазин <br/>в ТЦ «Магеллан»
+				</div>
+				<p>г. Тюмень, ул. 50 лет Октября, д.14<br/>3-й этаж Салон "VSEMPOSTEL"</p>
+				<div class="line"></div>
+				<div class="name red">VSEMPOSTEL</div>
+				<p>Работаем каждый день с 10:00 до 22:00</p>
+				<a href="tel:+7 (904) 499-96-69">+7 (904) 499-96-69</a>
+				<div class="line"></div>
+				<div class="name">ИП Пикин Максим Владимирович</div>
+				<p>ИНН    722400184012</p>
+				<p>ОГРНИП    313723202400206БИК    046577964</p>
+				<p>Р\счёт    40802810838320000312</p>
+				<!-- <button>СКАЧАТЬ РЕКВИЗИТЫ</button> -->
+			</div>
+			<div class="map">
+				<script type="text/javascript" charset="utf-8" async src="https://api-maps.yandex.ru/services/constructor/1.0/js/?um=constructor%3A948fa145d6613d42c134af35e5b8adacfbf0577b518b943db706fb2dfc47633e&amp;width=100%&amp;height=100%&amp;lang=ru_RU&amp;scroll=false"></script>
+			</div>
+			<div class="link">
+				<a href="tel:+7(904) 499-96-69" class="tel">+7(904) 499-96-69</a>
+			</div>
+			<div class="link">
+				<a href="tel:+7(3452) 500-903" class="tel">+7(3452) 500-903</a>
+			</div>
+			<div class="link">
+				<a href="mailto:500903@mail.ru" class="mail">500903@mail.ru</a>
+			</div>
+		</div>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

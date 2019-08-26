@@ -1,0 +1,61 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="order-finish">
+			<h1>Заказ сформирован</h1>
+			<p>Ваш заказ № {{order.id}} от {{order.created.day}}.{{order.created.month}}.{{order.created.year}} успешно создан. <br/>Номер оплаты {{oplata.id}}.</p>
+			<p class="pink">В ближайшее время с Вами свяжется наш менеджер <br/>(заказы обрабатываются с 5.00 до 14.00 по Москве).</p>
+			<p>Вы сможете следить за выполнением своего заказа в Персональном разделе сайта. <br/>Для входа в этот раздел Вам необходимо будет ввести Логин и пароль пользователя.</p>
+			{% if oplata.id == 1 %}
+
+			<div class="type">
+				<p>Выбранный способ оплаты:</p>
+				<div class="flex">
+					<img src="{% static 'img/payment1.png'%}">
+					<p>сервиса Яндекс.Деньги</p>
+				</div>
+			</div>
+			<div class="flex">
+				<div class="kassa">
+					Услугу предоставляет сервис онлайн - платежей «Яндекс.Касса»
+					<button onclick="window.location.href='{{url_to_paid}}'">ОПЛАТИТЬ</button>
+				</div>
+				<div class="sum">
+					<div>Сумма к оплате: {{order.total_all}} руб</div>
+					Вы будете перенаправлены на страницу оплаты
+				</div>
+			</div>
+			<div class="att">
+				<span>ОБРАТИТЕ ВНИМАНИЕ!</span>
+				если вы откажитесь от покупки, для возрата денег вам придется обратиться в магазин. 
+			</div>
+			{% else%}
+			<div class="type">
+				<p>Выбранный способ оплаты:</p>
+				<div class="flex">
+					<!-- <img src="{% static 'img/payment1.png'%}"> -->
+					<p >Наличными</p>
+				</div>
+			</div>
+			<div class="flex">
+				<!-- <div class="kassa">
+					Услугу предоставляет сервис онлайн - платежей «Яндекс.Касса»
+					<button onclick="window.location.href='{{url_to_paid}}'">ОПЛАТИТЬ</button>
+				</div> -->
+				<div class="sum">
+					<div>Сумма к оплате: {{order.total_all}} руб</div>
+					<!-- Вы будете перенаправлены на страницу оплаты -->
+				</div>
+			</div>
+			<div class="att">
+				<span>ОБРАТИТЕ ВНИМАНИЕ!</span>
+				если вы откажитесь от покупки, для возрата денег вам придется обратиться в магазин. 
+			</div>
+			{% endif%}
+		</div>
+	</div>
+
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

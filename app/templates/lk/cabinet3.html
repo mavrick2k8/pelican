@@ -1,0 +1,206 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<a href="/">Главная/ </a><a href="/lk">Мой кабинет/ </a><a href="/orders">Текущие заказы/ </a><a href="/orders">Заказ № {{order.id}}</a>
+		</div>
+		<!-- <div class="back-link b">
+			<a href="#">Вернуться в список заказов</a>
+		</div> -->
+		<div class="cabinet-orders">
+			<h1>Заказ № {{order.id}} от {{order.created.day}}.{{order.created.month}}.{{order.created.year}} </h1>
+			<table>
+				<tr>
+					<td>Ф.И.О:</td>
+					<td>{{order.first_name}}</td>
+				</tr>
+				<!-- <tr>
+					<td>Текущий статус</td>
+					<td>Принят, ожидается оплата</td>
+				</tr> -->
+				<tr>
+					<td>Сумма:</td>
+					<td>{{order.total_all}}  ₽</td>
+				</tr>
+			</table>
+			<!-- <div class="more-link">
+				<a><i class="fa fa-angle-down"></i></a>
+			</div> -->
+			<!-- <table class="hidden">
+				<tr>
+					<td>Логин:</td>
+					<td>verbera</td>
+				</tr>
+				<tr>
+					<td>e-mail адрес:</td>
+					<td>verbera.verbera@yandex.ru</td>
+				</tr>
+				<tr>
+					<td>Тип плательщика:</td>
+					<td>Физическое лицо</td>
+				</tr>
+				<tr>
+					<td>Ф.И.О:</td>
+					<td>Мошегова Вера Георгиевна</td>
+				</tr>
+				<tr>
+					<td>Логин:</td>
+					<td>verbera</td>
+				</tr>
+				<tr>
+					<td>e-mail адрес:</td>
+					<td>verbera.verbera@yandex.ru</td>
+				</tr>
+				<tr>
+					<td>Тип плательщика:</td>
+					<td>Физическое лицо</td>
+				</tr>
+				<tr>
+					<td>Ф.И.О:</td>
+					<td>Мошегова Вера Георгиевна</td>
+				</tr>
+			</table> -->
+			<div class="name">Парметры оплаты</div>
+			<table>
+				{% for oplata in order.oplata_set.all %}
+
+				<tr>
+					<td>Оплата:</td>
+					<td>Оплата № {{oplata.id}} от {{oplata.created.day}}.{{oplata.created.month}}.{{oplata.created.year}}</td>
+				</tr>
+				<!-- <tr>
+					<td>Статус оплаты:</td>
+					<td>Ожидает обработки</td>
+				</tr> -->
+				<tr>
+					<td>Способ оплаты:</td>
+					<td>{{order.order_payment}}</td>
+				</tr>
+				<tr>
+					<td>Статус</td>
+					{% if oplata.paid == True %}
+					<td><span class="status">ОПЛАЧЕНО</span> </td>
+					{% else%}
+					<td><span class="status">НЕ ОПЛАЧЕНО</span> <button>ОПЛАТИТЬ</button></td>
+					{% endif%}
+				{% endfor %}
+			</table>
+			<div class="name">Парметры отгрузки</div>
+			<table>
+				{% for delivery in order.oplata_set.all %}
+				<tr>
+					<td>Доставка:</td>
+					<td>Отгрузка № {{delivery.id}} от {{delivery.created.day}}.{{delivery.created.month}}.{{delivery.created.year}}, стоимость доставки {{delivery.price}}  ₽</td>
+				</tr>
+				<!-- <tr>
+					<td>Статус отгрузки:</td>
+					<td>Ожидает обработки</td>
+				</tr> -->
+				<tr>
+					<td>Служба доставки:</td>
+					<td>{{order.order_delivery}}
+						<!-- <label style="padding-left: 0;">Сменить способ доставки</label>
+						СДЭК -->
+					</td>
+				</tr>
+				<tr>
+					<td>Статус</td>
+					<td><span class="status">НЕ ОТГРУЖЕНО</span></td>
+				</tr>
+				{% endfor %}
+			</table>
+			<div class="name">Содержание заказа</div>
+		</div>
+		<div class="order-items">
+			<table class="tbl1">
+				<thead>
+					<tr>
+						<td>Наименование</td>
+						<td>Цена</td>
+						<td>Количество</td>
+						<td>Сумма</td>
+					</tr>
+				</thead>
+				<tbody>
+					{% for i in items %}
+					<tr>
+						<td>
+							<div class="photo">
+								<img src="{{i.link_image}}">
+								<div class="text">
+									<div>{{i.product_name}}</div>
+									Размер: {{i.atributeproduct_name}}<br/>
+									<!-- <span>СКИДКА 50%</span> -->
+								</div>
+								<div class="clear"></div>
+							</div>
+						</td>
+						<td><div class="price">{{i.price}} ₽</div></td>
+						<td>{{i.quantity}} шт</td>
+						<td><div class="price">{{i.tot_lk}} ₽</div></td>
+					</tr>
+					{% endfor %}
+					<!-- <tr>
+						<td>
+							<div class="photo">
+								<img src="{% static 'img/order.jpg'%}">
+								<div class="text">
+									<div>Постельное белье бурбон</div>
+									Размер: Евро<br/>
+									<span>СКИДКА 50%</span>
+								</div>
+								<div class="clear"></div>
+							</div>
+						</td>
+						<td><div class="price">4 500 ₽</div></td>
+						<td>1 шт</td>
+						<td><div class="price">4 500 ₽</div></td>
+					</tr>
+					<tr>
+						<td>
+							<div class="photo">
+								<img src="{% static 'img/order.jpg'%}">
+								<div class="text">
+									<div>Постельное белье бурбон</div>
+									Размер: Евро<br/>
+									<span>СКИДКА 50%</span>
+								</div>
+								<div class="clear"></div>
+							</div>
+						</td>
+						<td><div class="price">4 500 ₽</div></td>
+						<td>1 шт</td>
+						<td><div class="price">4 500 ₽</div></td>
+					</tr> -->
+				</tbody>
+			</table>
+			<div class="flex">
+				<div></div>
+				<table class="tbl2">
+					<!-- <tr>
+						<td>Общий вес:</td>
+						<td>0,17кг</td>
+					</tr> -->
+					<tr>
+						<td>Товар на:</td>
+						<td>{{order.total_new}}  ₽ </td>
+					</tr>
+					<tr>
+						<td>Стоимость доставки:</td>
+						<td>{{order.deliveri_total}}  ₽ </td>
+					</tr>
+					<tr>
+						<td>Итого:</td>
+						<td>{{order.total_all}}  ₽ </td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class="back-link b">
+			<a href="/orders">Вернуться в список заказов</a>
+		</div>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

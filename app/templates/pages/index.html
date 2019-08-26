@@ -1,0 +1,276 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+    </div>
+	<div class="index-top-bg">
+		<div class="wrap">
+			<div class="banner">
+				
+				<a href="{% if baner.link%}{{baner.link}}{% else %}#{% endif %}"><img src="{{baner.image.url}}"></a>
+				
+			</div>
+			<div class="name">
+				<span>ПОКУПАЙТЕ</span>
+				постельное белье выгодно, не выходя из дома
+			</div>
+			<div class="advantages flex">
+				<div>Быстрая <br/>и бережная доставка</div>
+				<div>Гарантия <br/>от производителя</div>
+				<div>Приятная <br/>скидка за подписку</div>
+				<div>Удобные <br/>формы оплаты</div>
+			</div>
+		</div>
+	</div>
+	<div class="wrap">
+		<div class="catalog-page2">
+			<div class="flex">
+				<div class="item w1">
+					<div class="bg" style="background: url('/static/img/catalog1.jpg') center/cover;"></div>
+					<a href="/catalog/odeyala"><button>Одеяла</button></a>
+				</div>
+				<div class="item w2">
+					<div class="bg" style="background: url('/static/img/catalog2.jpg') center/cover;"></div>
+					<a href="/catalog/podushki"><button>Подушки</button></a>
+				</div>
+				<div class="col">
+					<div class="item w3 small">
+						<div class="bg" style="background: url('/static/img/catalog3.jpg') center/cover;"></div>
+						<a href="/catalog/pledyi-i-pokryivala"><button>Пледы и покрывала</button></a>
+					</div>
+					<div class="item w3 small2">
+						<div class="bg" style="background: url('/static/img/catalog4.jpg') center/cover;"></div>
+						<a href="/catalog/postelnoe-bele"><button>Постельное белье</button></a>
+					</div>
+				</div>
+				<div class="item w4">
+					<div class="bg" style="background: url('/static/img/catalog5.jpg') center/cover;"></div>
+					<a href="/catalog/polotentsa"><button>Полотенца</button></a>
+				</div>
+				<div class="item w5">
+					<div class="bg" style="background: url('/static/img/catalog6.jpg') center/cover;"></div>
+					<a href="/catalog/halatyi"><button>Халаты</button></a>
+				</div>
+				<div class="col">
+					<div class="item w3 small">
+						<div class="bg" style="background: url('/static/img/catalog7.jpg') center/cover;"></div>
+						<a href="/catalog/matrasyi"><button>Матрасы</button></a>
+					</div>
+					<div class="item w3 small2">
+						<div class="bg" style="background: url('/static/img/catalog8.jpg') center/cover;"></div>
+						<a href="/catalog/postelnyie-prenadlezhnosti"><button>Постельные пренадлежности</button></a>
+					</div>
+				</div>
+				<div class="item w3 small3">
+					<div class="bg" style="background: url('/static/img/catalog9.jpg') center/cover;"></div>
+					<a href="/catalog/skaterti"><button>Скатерти</button></a>
+				</div>
+			</div>
+		</div>
+		<div class="flex">
+			{% if sale or new or popular %}
+			<div class="index-faq-block">
+				<div class="content">
+					<div class="name">Есть вопросы?</div>
+					Если Вам сложно определиться с выбором, напишите нам или оставьте заявку на звонок.
+					<button>ЗАКАЗАТЬ ЗВОНОК</button>
+				</div>
+			</div>
+			{% endif%}
+			<div class="index-tabs tabs">
+				<ul class="tabNavigation">
+					{% if popular %}<li><a href="#t1">ПОПУЛЯРНЫЕ ТОВАРЫ</a></li>{% endif%}
+					{% if new %}<li><a href="#t2">НОВИНКИ</a></li>{% endif%}
+					{% if sale %}<li><a href="#t3">СКИДКИ</a></li>{% endif%}
+				</ul>
+				{% if popular %}
+				<div id="t1" class="tab-content">
+					<div class="name">ПОПУЛЯРНЫЕ ТОВАРЫ</div>
+					<div class="popular-slider">
+						{% for i in popular %}
+						<div class="item">
+							<a href="/{{i.get_absolute_url}}"><img src="{{i.image.url}}" height="218" width="149.5"></a>
+							<div class="name">{{i.name}}</div>
+							<div class="content">
+								<div class="flex">
+									{% for sv in i.atributeproduct_set.all %}
+									{%if sv.atr.name == 'Материал' %}
+									<div class="n">{{ sv.atrvalue }}</div>
+										{%endif%}
+										{% endfor %}
+										<div class="price">
+											<div class="new" id="price-{{i.id}}">{{ i.torg.0.price }} ₽</div>
+											<!-- <div class="old">5 000 ₽</div> -->
+										</div>
+								</div>
+								<label>Размер</label>
+								<select tabindex="0" onchange="cc(this.options[this.selectedIndex].getAttribute('price'),this.options[this.selectedIndex].getAttribute('id'));">
+									{% for z in i.torg %}
+								
+									<option  price="{{z.price}}" id="{{z.prod.id}}">{{z}}</option>
+								
+									{%endfor%}
+									<!-- <option>Евро</option>
+									<option>Евро</option> -->
+								</select>
+							</div>
+						</div>
+						{% endfor %}
+						
+					</div>
+				</div>
+				{% endif%}
+				{% if new %}
+				<div id="t2" class="tab-content">
+					<div class="name">НОВИНКИ</div>
+					<div class="popular-slider">
+						{% for i in new %}
+						<div class="item">
+							<a href="/{{i.get_absolute_url}}"><img src="{{i.image.url}}" height="218" width="149.5"></a>
+							<div class="name">{{i.name}}</div>
+							<div class="content">
+								<div class="flex">
+									{% for sv in i.atributeproduct_set.all %}
+									{%if sv.atr.name == 'Материал' %}
+									<div class="n">{{ sv.atrvalue }}</div>
+										{%endif%}
+										{% endfor %}
+										<div class="price">
+											<div class="new" id="price-{{i.id}}-new">{{ i.torg.0.price }} ₽</div>
+											<!-- <div class="old">5 000 ₽</div> -->
+										</div>
+								</div>
+								<label>Размер</label>
+								<select tabindex="0" onchange="cc(this.options[this.selectedIndex].getAttribute('price'),this.options[this.selectedIndex].getAttribute('id'));">
+									{% for z in i.torg %}
+								
+									<option  price="{{z.price}}" id="{{z.prod.id}}-new">{{z}}</option>
+								
+									{%endfor%}
+									<!-- <option>Евро</option>
+									<option>Евро</option> -->
+								</select>
+							</div>
+						</div>
+						{% endfor %}
+						
+					</div>
+					
+				</div>
+				{% endif%}
+				{% if sale %}
+				<div id="t3" class="tab-content">
+					<div class="name">СКИДКИ</div>
+					<div class="popular-slider">
+						{% for i in sale %}
+						<div class="item">
+							<a href="/{{i.get_absolute_url}}"><img src="{{i.image.url}}" height="218" width="149.5"></a>
+							<div class="name">{{i.name}}</div>
+							<div class="content">
+								<div class="flex">
+									{% for sv in i.atributeproduct_set.all %}
+									{%if sv.atr.name == 'Материал' %}
+									<div class="n">{{ sv.atrvalue }}</div>
+										{%endif%}
+										{% endfor %}
+										<div class="price">
+											<div class="new" id="price-{{i.id}}-sale">{{ i.torg.0.price }} ₽</div>
+											<!-- <div class="old">5 000 ₽</div> -->
+										</div>
+								</div>
+								<label>Размер</label>
+								<select tabindex="0" onchange="cc(this.options[this.selectedIndex].getAttribute('price'),this.options[this.selectedIndex].getAttribute('id'));">
+									{% for z in i.torg %}
+								
+									<option  price="{{z.price}}" id="{{z.prod.id}}-sale">{{z}}</option>
+								
+									{%endfor%}
+									<!-- <option>Евро</option>
+									<option>Евро</option> -->
+								</select>
+							</div>
+						</div>
+						{% endfor %}
+						
+					</div>
+					
+				</div>
+				{% endif%}
+			</div>
+		</div>
+		<div class="index-free-banner">
+			<div class="content">
+				<span>БЕСПЛАТНАЯ ДОСТАВКА ПО ТЮМЕНИ</span>
+				При покупке на сумму от 5 000  ₽
+			</div>
+		</div>
+		<div class="about-page">
+			<div class="flex">
+				<div class="text1">
+					<div class="name">
+						<span>VSEMPOSTEL—</span>
+						интернет-магазин товаров для дома
+					</div>
+					<ul>
+						<li>Хотите выбрать оригинальный и полезный подарок?</li>
+						<li>Обустраиваете новое жилье?</li>
+						<li>Просто любите сладко и комфортно поспать?</li>
+						<li>При этом долгие прогулки по торговым центрам не вызывают у Вас восторга, да и цены хотелось бы увидеть более разумные? </li>
+					</ul>
+				</div>
+				<div class="text2">
+					<div class="name">Вы обратились по адресу!</div>
+					<p>Наш интернет-магазин постельного белья поможет сэкономить и время,и деньги. За небольшое время и вполне разумные деньги Вы найдете у нас все, что нужно!</p>
+					<p>Мы искренне желаем Вам удачных покупок, и будем рады снова видеть Вас на нашем сайте!</p>
+				</div>
+			</div>
+		</div>
+		<div class="flex">
+			<div class="index-name">ПОЛЕЗНАЯ ИНФОРМАЦИЯ И НАШИ НОВОСТИ </div>
+			<div class="index-discount">
+				<div class="content">
+						<span>Подпишись в VK </span>
+					<!-- на товар за подписку в группу в ВК --> 
+					<button onclick="window.location.href='https://vk.com/vsempostel'">VK ПОДПИСАТЬСЯ НА НОВОСТИ</button> 
+				</div>
+			</div>
+		
+			<div class="index-main-article">
+				<a href="/{{lastnews.get_absolute_url}}"><img src="{{lastnews.image.url}}" ></a>
+				<a href="/{{lastnews.get_absolute_url}}" class="name">{{lastnews.name}}</a>
+				{{lastnews.short_descriptions}}
+			</div>
+			<div class="index-last-articles">
+				<div class="name">ИЗ ПОСЛЕДНЕГО:</div>
+				{% for i in news|slice:":3" %}
+				<div class="item">
+					<a href="/{{i.get_absolute_url}}"><img src="{{i.image.url}}" width="113" height="113"></a>
+					<div class="text">
+						<a href="/{{i.get_absolute_url}}">{{i.name}}</a>
+						{{i.short_descriptions}}
+					</div>
+					<div class="clear"></div>
+				</div>
+				{% endfor %}
+				<!-- <div class="item">
+					<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+					<div class="text">
+						<a href="#">Название статьи или новости</a>
+						Первые строчки содержания
+					</div>
+					<div class="clear"></div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+					<div class="text">
+						<a href="#">Название статьи или новости</a>
+						Первые строчки содержания
+					</div>
+					<div class="clear"></div>
+				</div> -->
+			</div>
+		</div>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

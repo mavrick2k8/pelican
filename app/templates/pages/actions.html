@@ -1,0 +1,116 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<a href="/">Главная/ </a><a href="/sale">Акции/ </a>
+		</div>
+		<h1>АКЦИИ</h1>
+		<div class="articles-page flex">
+			{% if sale%}
+			{% for i in sale %}
+			<div class="item">
+				<a href="/{{i.get_absolute_url}}"><img src="{{i.image.url}}" width="113" height="113"></a>
+				<div class="text">
+					<a href="/{{i.get_absolute_url}}">{{i.name}}</a>
+					{{i.short_descriptions}}
+				</div>
+				<div class="clear"></div>
+			</div>
+			{% endfor %}
+			{%else%}
+			<h1>Действующих акции в данный момент нет </h1>
+			{% endif%}
+			<!-- <div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="item">
+				<a href="#"><img src="{% static 'img/article.jpg'%}"></a>
+				<div class="text">
+					<a href="#">Название статьи или новости</a>
+					Первые строчки содержания
+				</div>
+				<div class="clear"></div>
+			</div> -->
+		</div>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

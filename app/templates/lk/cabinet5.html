@@ -1,0 +1,31 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<a href="#">Главная / Мой кабинет/Текущие заказы/Заказ № 25684</a>
+		</div>
+		<div class="back-link b">
+			<a href="#">Вернуться в список заказов</a>
+		</div>
+		<div class="cabinet-orders">
+			<h1>Настройки подписки</h1>
+			<form>
+				<div class="label">Ваш e-mail.ru</div>
+				<input type="text" value="verbera.verbera@yandex.ru">
+				<div class="label">Рубрики подписки:</div>
+				<input type="checkbox" id="ch1"><label for="ch1">Акции</label><br/>
+				<input type="checkbox" id="ch2"><label for="ch2">Новости магазина и статьи</label>
+				<div class="small">
+					<input type="checkbox" id="ch3"><label for="ch3">Даю согласие на обработку данных</label>
+				</div>
+				<div class="button flex">
+					<button>ДОБАВИТЬ</button>
+					<button>СБРОС</button>
+				</div>
+			</form>
+		</div>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

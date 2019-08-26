@@ -1,0 +1,82 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<a href="/">Главная/ </a><a href="/lk">Мой кабинет/ </a><a href="/orders">Текущие заказы/ </a>
+		</div>
+		<div class="cabinet-orders">
+			<h1>Текущие заказы</h1>
+			{% for i  in orders %}
+			<div class="name">Заказ № {{i.id}} от {{i.created.day}}.{{i.created.month}}.{{i.created.year}},  товара на сумму  {{i.total_new}} ₽ </div>
+			<table>
+				{% for oplata in i.oplata_set.all %}
+				
+				
+				<tr>
+					<td>Оплата:</td>
+					<td>Оплата № {{oplata.id}} от {{oplata.created.day}}.{{oplata.created.month}}.{{oplata.created.year}}</td>
+				</tr>
+				<tr>
+					<td>Сумма к опате:</td>
+					<td>{{i.total_new}} ₽ </td>
+				</tr>
+				
+
+				<tr>
+					<td>Способ оплаты: </td>
+					<td>{{i.order_payment}}
+
+						<!-- <label></label> -->
+						<!-- <select>
+							<option>Яндекс.Деньги</option>
+							<option>Яндекс.Деньги</option>
+						</select> -->
+					</td>
+				</tr>
+				<tr>
+					<td>Статус</td>
+					{% if oplata.paid == True %}
+					<td><span class="status">ОПЛАЧЕНО</span> </td>
+					{% else%}
+					{% if oplata.id == 1 %}
+					<td><span class="status">НЕ ОПЛАЧЕНО</span> <button onclick="window.location.href='/{{i.id}}/success'">ОПЛАТИТЬ</button></td>
+					{% else %}
+					<td><span class="status">НЕ ОПЛАЧЕНО</span></td>
+					{% endif %}
+					{% endif%}
+					
+				</tr>
+				{% endfor %}
+			</table>
+			<table>
+				{% for delivery in i.oplata_set.all %}
+				<tr>
+					<td>Доставка:</td>
+					<td>Отгрузка № {{delivery.id}} от {{delivery.created.day}}.{{delivery.created.month}}.{{delivery.created.year}}, стоимость доставки {{delivery.price}}  ₽</td>
+				</tr>
+				<!-- <tr>
+					<td>Статус отгрузки:</td>
+					<td>Ожидает обработки</td>
+				</tr> -->
+				<tr>
+					<td>Служба доставки:</td>
+					<td>{{i.order_delivery}}</td>
+				</tr>
+				<tr>
+					<td>Статус</td>
+					<td><span class="status">НЕ ОТГРУЖЕНО</span></td>
+				</tr>
+				{% endfor %}
+			</table>
+			<div class="flex buttons">
+				<button onclick="location.href = '/orders/{{i.id}}';">ПОДРОБНЕЕ О ЗАКАЗЕ</button>
+				<!-- <button>ОТМЕНИТЬ ЗАКАЗ</button> -->
+			</div>
+			{% endfor %}
+
+		</div>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

@@ -1,0 +1,38 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="reg-page">
+			<h1><img src="{% static 'img/arrow4.png'%}"> Авторизация</h1>
+			<p>Авторизировавшись, вы сможете управлять своими личными данными, следить за состоянием заказов</p>
+			<div class="name">Я зарегистрированный пользователь</div>
+			<form action='.' method='POST'>
+				  {% csrf_token %}
+				<label>е-mail*</label>
+				<div class="field">
+					<input type="text" name="username" id="username">
+				</div>
+				<label>Пароль*</label>
+				<div class="field">
+					<input type="password" name="password" id="password">
+				</div>
+				<div class="link">
+					<a href="/user/password/reset/">Забыли пароль?*</a>
+				</div>
+				<div class="agree m">
+					<input type="checkbox" id="ch1">
+					<label for="ch1">Запомнить меня</label>
+				</div>
+				<button>ВОЙТИ</button>
+			</form>
+			<div class="new-user">
+				<div class="name">Я новый пользователь</div>
+				<form action="/reg">
+				<button>ЗАРЕГИСТРИРОВАТЬСЯ</button>
+			</form>
+			</div>
+		</div>
+	</div>
+	{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

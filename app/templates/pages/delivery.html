@@ -1,0 +1,64 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<a href="/">Главная/ </a><a href="/delivery">Доставка и оплата/ </a>
+		</div>
+		<h1>ДОСТАВКА И ОПЛАТА</h1>
+		<div class="garantee-page">
+			<div class="top-text">
+				Подробно рассказываем о методах оплаты и условиях доставки товаров в нашем интернет-магазине. Наш  сайт работает по протоколу SSL, мы соблюдаем политику конфиденциальности и гарантируем  безопасность всех ваших данных
+			</div>
+			<div class="flex">
+				<div class="item">
+					<div class="name"><img src="{% static 'img/delivery.png'%}"> ОПЛАТА</div>
+					<div class="text">
+						<div class="block">
+							<img src="{% static 'img/delivery1.png'%}">
+							<span>НАЛИЧНЫЕ</span>
+							Оплатить наличными курьеру или при самовывозе  в нашем магазине
+						</div>
+						<div class="block">
+							<img src="{% static 'img/delivery2.png'%}">
+							<span>ЭЛЕКТРОННЫЕ ДЕНЬГИ</span>
+							Принимаем электронные деньги через сервис Яндекс.Касса. <br/>Электронный платежный сервис защищен  PCI DSS
+						</div>
+						<div class="block">
+							<img src="{% static 'img/delivery3.png'%}">
+							<span>БАНКОВСВКИЕ КАРТЫ</span>
+							Интернет -эквайринг через  процессинговый центр банка «Авангард».Безопасность транзакций по сертифицированному  протоколу  3-D Secure.
+						</div>
+					</div>
+				</div>	
+				<div class="item">
+					<div class="name"><img src="{% static 'img/delivery.png'%}"> ДОСТАВКА</div>
+					<div class="text">
+						<div class="block">
+							<img src="{% static 'img/delivery4.png'%}">
+							<span>САМОВЫВОЗ</span>
+							Вы можете забрать заказ в нашем магазине в Тюмени <br/>
+							По адресу  ул. 50 лет Октября д. 14 <br/>ТЦ «Магеллан», 3-й этаж
+						</div>
+						<div class="block">
+							<img src="{% static 'img/delivery5.png'%}">
+							<span>ДОСТАВКА КУРЬЕРОМ</span>
+							Доставка в черте Тюмени по согласованию  до 22:00
+						</div>
+						<div class="block">
+							<img src="{% static 'img/delivery6.png'%}">
+							<span>ТРАНСПОРТНЫЕ КОМПАНИИ</span>
+							Доставка до транспортной компании бесплатно. Оплата по факту получения груза в офисе ТК
+						</div>
+					</div>
+				</div>
+			</div>
+			<h2>ВНИМАНИЕ</h2>
+			<div class="top-text">
+				Неправильно указанный номер телефона, неточный или неполный адрес могут привести к дополнительной  задержке. Пожалуйста, внимательно проверяйте ваши персональные данные при регистрации  и оформлении заказа
+			</div>
+		</div>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

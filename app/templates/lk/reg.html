@@ -1,0 +1,57 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+<form method="POST">
+                {% csrf_token %}
+		<div class="reg-page">
+			<h1><img src="{% static 'img/arrow4.png'%}"> Регистрация</h1>
+			<p>После регистрации на сайте вам будет доступно состояние заказов,личный кабинет и другие возможности</p>
+			<label>Фамилия Имя Отчество*</label>
+			<div class="field">
+				<input type="text" name="first_name" id="id_first_name">
+				<div>Ваше Имя необходимо, <br/>чтобы мы знали как к Вам обращаться</div>
+			</div>
+			<label>е-mail*</label>
+			<div class="field">
+				<input type="text" name="username" id="id_username">
+				<div>Является логином для входа на сайт. Так же <br/>на него будут приходить уведомления о статусах</div>
+			</div>
+			<label>Телефон*</label>
+			<div class="field">
+				<input type="text" name="numberphone" id="id_numberphone">
+				<div>Контактный телефон нужен <br/>для уточнения деталей заказов</div>
+			</div>
+			<label>Пароль*</label>
+			<div class="field">
+				<input type="password"  name="password" id="id_password">
+				<div>Длина поля <br/>не менее 6 символов</div>
+			</div>
+			<label>Подтверждение пароля*</label>
+			<div class="field">
+				<input type="password">
+			</div>
+			<!-- <label class="small">Введите код*</label>
+			<div class="captcha">
+				<input type="text">
+				<a><img src="{% static 'img/reload.png'%}"></a>
+				<img src="{% static 'img/captcha.png'%}">
+			</div> -->
+			<div class="flex">
+				<div class="agree">
+					<input type="checkbox" id="ch1" required>
+					<label for="ch1">Даю согласие на обработку данных</label>
+				</div>
+				<button>ЗАРЕГИСТРИРОВАТЬСЯ</button>
+			</div>
+		</div>
+	</div>
+</form>
+
+	
+
+
+
+	{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

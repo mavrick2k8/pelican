@@ -1,0 +1,306 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/slick.css' %}">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+	
+	<script src="{% static 'js/common.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/slick.min.js'%}"></script>
+</head>
+<body>
+	<header class="fixed-header">
+		<div class="top">
+			<div class="wrap">
+				<div class="flex">
+					<div class="logo">
+						<a href="/" class="name">VSEMPOSTEL</a>
+						<a href="tel: 8 (3452) 500 - 903 " class="tel">8 (3452) 500 - 903</a>
+					</div>
+					<ul>
+						<li><a href="#">ДОСТАВКА И ОПЛАТА</a></li>
+						<li><a href="#">АКЦИИ</a></li>
+						<li><a href="#">О НАС</a></li>
+						<li><a href="#">КОНТАКТЫ</a></li>
+					</ul>
+					<div class="links">
+						<a href="#"><img src="{% static 'img/login.png'%}"> ВОЙТИ</a> / <a href="#"><img src="{% static 'img/reg.png'%}"> РЕГИСТРАЦИЯ</a>
+					</div>
+					<div class="right-block">
+						<a class="link">КАТАЛОГ</a>
+						<div class="cart">
+							<div>
+								<img src="{% static 'img/cart.png'%}"> КОРЗИНА<span>2</span>
+							</div>
+							<a href="#">2560 руб</a>
+						</div>
+					</div>
+					<div class="menu-button"></div>
+				</div>
+			</div>
+		</div>
+		<nav class="top-menu">
+			<div class="wrap">
+				<p>КАТАЛОГ</p>
+				<ul class="flex">
+					<li><a href="#">ПОСТЕЛЬНОЕ БЕЛЬЕ</a></li>
+					<li><a href="#">ПОДУШКИ</a></li>
+					<li><a href="#">ПОЛОТЕНЦА</a></li>
+					<li><a href="#">ПЛЕДЫ И ПОКРЫВАЛА</a></li>
+					<li><a href="#">МАТРАСЫ</a></li>
+					<li><a href="#">ХАЛАТЫ</a></li>
+					<li><a href="#">ОДЕЯЛА</a></li>
+					<li><a href="#">СКАТЕРТИ</a></li>
+					<li><a href="#">ПОСТЕЛЬНЫЕ ПРИНАДЛЕЖНОСТИ</a></li>
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<nav class="mobile-menu">
+		<a class="close"><i class="fa fa-close"></i></a>
+		<div class="flex">
+			<a href="#"><img src="{% static 'img/login.png'%}"> ВОЙТИ</a>
+			<a href="#"><img src="{% static 'img/reg.png'%}"> РЕГИСТРАЦИЯ</a>
+		</div>
+		<ul class="menu1">
+			<li><a href="#">ДОСТАВКА И ОПЛАТА</a></li>
+			<li><a href="#">АКЦИИ</a></li>
+			<li><a href="#">О НАС</a></li>
+			<li><a href="#">КОНТАКТЫ</a></li>
+		</ul>
+		<nav class="menu2">
+			<p>КАТАЛОГ</p>
+			<ul>
+				<li><a href="#">ПОСТЕЛЬНОЕ БЕЛЬЕ</a></li>
+				<li><a href="#">ПОДУШКИ</a></li>
+				<li><a href="#">ПОЛОТЕНЦА</a></li>
+				<li><a href="#">ПЛЕДЫ И ПОКРЫВАЛА</a></li>
+				<li><a href="#">МАТРАСЫ</a></li>
+				<li><a href="#">ХАЛАТЫ</a></li>
+				<li><a href="#">ОДЕЯЛА</a></li>
+				<li><a href="#">СКАТЕРТИ</a></li>
+				<li><a href="#">ПОСТЕЛЬНЫЕ ПРИНАДЛЕЖНОСТИ</a></li>
+			</ul>
+		</nav>
+	</nav>
+	<div class="top-line">
+		<div class="wrap">
+			<div class="flex">
+				<div class="menu-button"></div>
+				<a href="tel:+73452500903" class="tel">8 (3452) 500 - 903</a>
+				<div class="city">
+					<a class="link"><img src="{% static 'img/pointer.png'%}"> Новосибирск</a>
+					<div class="sub">
+						<a class="close"></a>
+						<p>Ваш город?</p>
+						<a href="#">Да</a>
+						<a href="#">Нет</a>
+					</div>
+				</div>
+				<ul>
+					<li><a href="#">ДОСТАВКА И ОПЛАТА</a></li>
+					<li><a href="#">АКЦИИ</a></li>
+					<li><a href="#">О НАС</a></li>
+					<li><a href="#">КОНТАКТЫ</a></li>
+					<li><a href="#"><img src="{% static 'img/login.png'%}"> ВОЙТИ / <img src="{% static 'img/reg.png'%}"> РЕГИСТРАЦИЯ</a></li>
+				</ul>
+				<div class="cart">
+					<div>
+						<img src="{% static 'img/cart.png'%}"> КОРЗИНА<span>0</span>
+					</div>
+					<a href="#">00 руб</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="wrap">
+		<header class="header">
+			<div class="flex">
+				<div class="logo">
+					<a href="/">
+						<span>VSEMPOSTEL</span>
+						Интернет-магазин постельного белья
+					</a>
+					<div>г. Тюмень,ул. 50 лет Октября д. 14 <br/>ТЦ «Магеллан», 3-й этаж</div>
+				</div>
+				<form>
+					<input type="text" placeholder="ПОИСК">
+					<button></button>
+				</form>
+				<div class="hours">
+					<a href="tel:+73452500903 ">8 (3452) 500 - 903</a>
+					Ежедневно с 10.00 до 22.00
+				</div>
+				<button>ЗАКАЗАТЬ ЗВОНОК</button>
+			</div>
+		</header>
+		<nav class="top-menu">
+			<p>КАТАЛОГ</p>
+			<ul class="flex">
+				<li><a href="#">ПОСТЕЛЬНОЕ БЕЛЬЕ</a></li>
+				<li><a href="#">ПОДУШКИ</a></li>
+				<li><a href="#">ПОЛОТЕНЦА</a></li>
+				<li><a href="#">ПЛЕДЫ И ПОКРЫВАЛА</a></li>
+				<li><a href="#">МАТРАСЫ</a></li>
+				<li><a href="#">ХАЛАТЫ</a></li>
+				<li><a href="#">ОДЕЯЛА</a></li>
+				<li><a href="#">СКАТЕРТИ</a></li>
+				<li><a href="#">ПОСТЕЛЬНЫЕ ПРИНАДЛЕЖНОСТИ</a></li>
+			</ul>
+		</nav>
+		<div class="back-link">
+			<a href="#">Главная / О компании </a>
+		</div>
+		<div class="about-page">
+			<div class="flex">
+				<div class="text1">
+					<div class="name">
+						<span>VSEMPOSTEL—</span>
+						интернет-магазин товаров для дома
+					</div>
+					<ul>
+						<li>Хотите выбрать оригинальный и полезный подарок?</li>
+						<li>Обустраиваете новое жилье?</li>
+						<li>Просто любите сладко и комфортно поспать?</li>
+						<li>При этом долгие прогулки по торговым центрам не вызывают у Вас восторга, да и цены хотелось бы увидеть более разумные? </li>
+					</ul>
+				</div>
+				<div class="text2">
+					<div class="name">Вы обратились по адресу!</div>
+					<p>Наш интернет-магазин постельного белья поможет сэкономить и время,и деньги. За небольшое время и вполне разумные деньги Вы найдете у нас все, что нужно!</p>
+					<p>Мы искренне желаем Вам удачных покупок, и будем рады снова видеть Вас на нашем сайте!</p>
+				</div>
+			</div>
+			<div class="flex list">
+				<div class="item">
+					<div class="name"><img src="{% static 'img/about1.png'%}"> Большой выбор</div>
+					<p>Мы внимательно следим за актуальностью наших товаров и регулярно обновляем </p>
+				</div>
+				<div class="item">
+					<div class="name"><img src="{% static 'img/about2.png'%}"> Поддержка</div>
+					<p>Поддержка. Каждый заказ прикреплён к одному менеджеру, который сопровождает вас во всех вопросах.</p>
+				</div>
+				<div class="item">
+					<div class="name"><img src="{% static 'img/about3.png'%}"> Скорость</div>
+					<p>Отлаженная система логистики и доставки позволяет нам гарантировать исполнение любого заказа.</p>
+				</div>
+			</div>
+			<div class="history">
+				<div class="name">ИСТОРИЯ МАГАЗИНА</div>
+				<div class="flex">
+					<div class="item">
+						<img src="{% static 'img/about1..jpg'%}">
+						<p><span>2010 год.</span> Первый магазин «Белиссимо» мы открыли в Тюмени на ул. Первомайская, 44/2. Тогда мы работали всего лишь на 25 м² и фактически «сидели на постельном белье», но уже понимали что основа развития нашего бизнеса — в интернете.</p>
+						<div class="clear"></div>
+					</div>
+					<div class="item">
+						<img src="{% static 'img/about2..jpg'%}">
+						<p><span>2011 год.</span> На рынке домашнего трикотажа мы были первыми, кто запустил интернет-магазин постельного белья. Сайт располагался на домене POSTEL72.RU, используя платформу PrestaShop. Мы предлагали более 150 позиций, оплату через банк и быструю курьерскую доставку.</p>
+						<div class="clear"></div>
+					</div>
+					<div class="item">
+						<img src="{% static 'img/about3..jpg'%}">
+						<p><span>2013 год.</span> Начали активно работать с регионами нашей необъятной страны, поэтому купили домен VSEMPOSTEL.RU. Подключили полноценный интернет-эквайринг PayOnline и наладили поставки через транспортные компании и сервисы Почты России.</p>
+						<div class="clear"></div>
+					</div>
+					<div class="item">
+						<img src="{% static 'img/about4..jpg'%}">
+						<p><span>2017 год.</span> Переработали сайт на новой платформе 1С-Битрикс: адаптировали дизайн для мобильных устройств, кардинально переработали принцип фильтрации товаров. Подключили интернет-эквайринг от Яндекс.Кассы: теперь принимаем большинство электронных платёжных систем.</p>
+						<div class="clear"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="feedback-block">
+		<div class="content">
+			<div class="bg">
+				<div class="name">Затрудняетесь с выбором? Нужна помощь специалиста?</div>
+				<p>Просто напишите свой номер телефона и наш сотрудник Вам оперативно поможет</p>
+				<form>
+					<input type="text" placeholder="Ваш номер телефона">
+					<button class="b1">ЗАКАЗАТЬ КОНСУЛЬТАЦИЮ</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer class="footer">
+		<div class="wrap">
+			<div class="flex">
+				<nav>
+					<p>Информация для покупателей</p>
+					<ul>
+						<li><a href="#">ИНФОРМАЦИЯ ДЛЯ ПОКУПАТЕЛЯ</a></li>
+						<li><a href="#">ДОСТАВКА И ОПЛАТА</a></li>
+						<li><a href="#">АКЦИИ</a></li>
+						<li><a href="#">ВОЗВРАТ И ОБМЕН ТОВАРА</a></li>
+						<li><a href="#">ВОПРОСЫ И ОТВЕТЫ</a></li>
+						<li><a href="#">КОНТАКТЫ</a></li>
+						<li><a href="#">О НАС</a></li>
+						<li><a href="#">СТАТЬИ И НОВОСТИ</a></li>
+					</ul>
+				</nav>
+				<nav>
+					<p>Каталог товара</p>
+					<ul>
+						<li><a href="#">КАТАЛОГ ТОВАРА 1</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 2</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 3</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 4</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 5</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 6</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 7</a></li>
+						<li><a href="#">КАТАЛОГ ТОВАРА 8</a></li>
+					</ul>
+				</nav>
+				<div class="col">
+					<p>Подпишитесь на нашу рассылку</p>
+					<form>
+						<input type="text" placeholder="ВАШ  E-MAIL">
+						<button>ПОДПИСАТЬСЯ</button>
+					</form>
+					<div class="social">
+						<p>Мы в социальных сетях:</p>
+						<a href="#"><img src="{% static 'img/social1.png'%}"></a>
+						<a href="#"><img src="{% static 'img/social2.png'%}"></a>
+						<a href="#"><img src="{% static 'img/social3.png'%}"></a>
+					</div>
+				</div>
+				<div class="col">
+					<p>Контакты</p>
+					<a href="tel: 8 (3452) 500 - 903" class="tel">8 (3452) 500 - 903</a>
+					<div class="button">
+						<p>г. Тюмень,ул. 50 лет Октября д. 14<br/>ТЦ «Магеллан», 3-й этаж</p>
+						<button>ЗАКАЗАТЬ ЗВОНОК</button>
+					</div>
+					<div class="hours">
+						<p>Режим работы:</p>
+						<div class="b1">ЕЖЕДНЕВНО</div>
+						<div class="b2">С 10:00 - 22:00</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<div class="popup" style="display: block;">
+		<div class="window">
+			<div class="added">
+				<p>Обратный звонок</p>
+				<form>
+					<input type="text" placeholder="Ваше имя*">
+					<input type="text" placeholder="+7 (   )__ -__-___*">
+					<textarea placeholder="Здесь можно учточнить время звонка или указать дополнительную информацию"></textarea>
+					<div class="agree">
+						<input type="checkbox" id="a"><label for="a">Даю согласие на обработку данных</label>
+					</div>
+					<button class="b1">ОТПРАВИТЬ</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

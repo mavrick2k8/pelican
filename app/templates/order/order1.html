@@ -1,0 +1,323 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<a href="#">Главная / Моя корзина</a>
+		</div>
+		<script>
+    
+ 
+
+function zminus(a) {
+        $.ajax({
+          url: "/basket/add",
+          cache: false,
+          type: "GET",
+          data: {product: a,quantity:-1}, 
+          success: function(data){
+          location.reload() ;
+              }
+            });   
+   }
+function zplus(a) {
+        $.ajax({
+          url: "/basket/add",
+          cache: false,
+          type: "GET",
+          data: {product: a,quantity:1}, 
+          success: function(data){
+          location.reload() ;
+              }
+            });
+   }
+</script>
+<form  method="POST" >
+						{% csrf_token %}
+		<div class="cart-page flex">
+			<div class="left-side">
+				<div class="order">
+					<div class="name">
+						<span>1</span> Товары в заказе
+					</div>
+					<table>
+						<tbody>
+							{% for item in basket %}
+            			{% with product=item.product %}
+
+            
+			            {{ item.update_quantity_form.update }}
+			             {% csrf_token %}
+							<tr>
+								<td>
+									<div class="image">
+										<img src="{{item.image}}" width="158" height="110">
+										<div class="text">
+
+
+											<span>{{ product }}</span>
+											{{ item.name }}
+										</div>
+										<div class="clear"></div>
+									</div>
+								</td>
+								<td>
+									<div class="number">
+										<span class="minus" onclick="zminus({{ item.id }})"><img src="{% static 'img/minus.png'%}"></span>
+										<input type="text" value="{{ item.quantity }}"/>
+										<span class="plus" onclick="zplus({{ item.id }})"><img src="{% static 'img/plus.png'%}"></span>
+									</div>
+								</td>
+								<td>
+									<div class="price">
+										<div class="new">{{ item.total_price }} ₽</div>
+									</div>
+								</td>
+								<td><a class="delete" href="/basket/remove/{{item.id}}"></a></td>
+							</tr>
+							{% endwith %}
+     					{% endfor %}
+							<!-- <tr>
+								<td>
+									<div class="image">
+										<img src="{% static 'img/cart.jpg'%}">
+										<div class="text">
+											<span>Постельное белье бурбон</span>
+											Размер: Евро
+										</div>
+										<div class="clear"></div>
+									</div>
+								</td>
+								<td>
+									<div class="number">
+										<span class="minus"><img src="{% static 'img/minus.png'%}"></span>
+										<input type="text" value="1"/>
+										<span class="plus"><img src="{% static 'img/plus.png'%}"></span>
+									</div>
+								</td>
+								<td>
+									<div class="price">
+										<div class="new">4 500 ₽</div>
+									</div>
+								</td>
+								<td><a class="delete"></a></td>
+							</tr> -->
+						</tbody>
+					</table>
+					
+					<div class="flex">
+						<div></div>
+						<!-- <div class="button">
+							<button>ДАЛЕЕ</button>
+						</div> -->
+					</div>
+					<!-- <div class="name">
+						<span>2</span> Регион доставки
+					</div>
+					<div class="city-select">
+						<label>Город (населенный пункт)</label>
+						<select name="city" id="id_city" required>
+							<option value="Новосибирск">Новосибирск</option>
+							<option value="Тюмень">Тюмень</option>
+						</select>
+						
+						<p>Выберите свой город в списке. Если вы не нашли свой город, <br/>выбирите «другое место», а город впишите в поле «Город»</p>
+					</div>
+					<div class="flex p1">
+						<div class="button">
+							<button>НАЗАД</button>
+						</div>
+						<div class="button">
+							<button>ДАЛЕЕ</button>
+						</div>
+						<br>
+						<br>
+					</div> -->
+					<!-- <div class="name past">
+						<span>2</span> Регион доставки
+					</div>
+					<div class="city-select">
+						<div class="ok">
+							Город (населенный пункт) <span>Новосибирск</span>
+						</div>
+					</div> -->
+					<div class="name flex">
+						<div>
+							<span>2</span> Доставка
+						</div>
+						<!-- <a href="#">Изменить</a> -->
+					</div>
+					<div class="delivery flex">
+						<div class="item">
+							<input type="radio" name="order_delivery" id="id_order_delivery" value="1" checked onclick="radiocheck(this.value);">
+							<label for="d1">
+								<span>Самовывоз</span>
+								Вы можете самостоятельно забрать заказ из нашего магазина по адресу г.Тюмень, 50 лет Октября д. 14, ТЦ Магеллан
+							</label>
+						</div>
+						<div class="item">
+							<input type="radio" name="order_delivery" id="id_order_delivery" value="2" onclick="radiocheck(this.value);" >
+							<label for="d2">
+								<span>Доставка курьером</span>
+								Доставка по нужному адресу на дом или в офис по г. Тюмень
+							</label>
+						</div>
+			<!-- 			<div class="item">
+							<input type="radio" name="order_delivery" id="id_order_delivery" value="1">
+							<label for="d3">
+								<img src="{% static 'img/delivery11.png'%}">
+								СДЕК
+							</label>
+						</div>
+						<div class="item">
+							<input type="radio" name="order_delivery" id="id_order_delivery" value="2">
+							<label for="d4">
+								<img src="{% static 'img/delivery12.png'%}">
+								Почта Росии
+							</label>
+						</div> -->
+					</div>
+					<div class="flex p1">
+						<br>
+						<br>
+						<!-- <div class="button">
+							<button>НАЗАД</button>
+						</div>
+						<div class="button">
+							<button>ДАЛЕЕ</button>
+						</div> -->
+					</div>
+					<!-- <div class="name past">
+						<span>3</span> Доставка
+					</div>
+					<div class="city-select">
+						<div class="ok">
+							Самовывоз <span>Вы можете самостоятельно забрать заказ из нашего магазина по адресу г.Тюмень, 50 лет Октября д. 14, ТЦ Магеллан</span>
+						</div>
+					</div> -->
+					<div class="name flex">
+						<div><span>3</span> Оплата</div>
+						<!-- <a href="#">Изменить</a> -->
+					</div>
+					<div class="payment">
+						<div class="item">
+							<input type="radio" name="order_payment" id="id_order_payment" value="1">
+							<label for="p1" class="with_img">Онлайн оплата банковскими картами с помощью сервиса Яндекс.Деньги <img src="{% static 'img/payment1.png'%}"></label>
+						</div>
+						<div class="item">
+							<input type="radio" name="order_payment" id="id_order_payment" value="2" checked>
+							<label for="p2">Оплата наличными</label>
+						</div>
+					</div>
+					<div class="flex p1">
+						<br>
+						<br>
+						<!-- <div class="button">
+							<button>НАЗАД</button>
+						</div>
+						<div class="button">
+							<button>ДАЛЕЕ</button>
+						</div> -->
+					</div>
+					
+					<!-- <div class="name past">
+						<span>4</span> Оплата
+					</div>
+					<div class="city-select">
+						<div class="ok">
+							<span>Онлайн оплата банковскими картами с помощью сервиса Яндекс.Деньги</span>
+						</div>
+					</div> -->
+					<div class="name flex">
+						<div><span>4</span> Покупатель</div>
+						<!-- <a href="#">Изменить</a> -->
+					</div>
+					
+					<!-- <form class="new_sec"> -->
+						<div class="new_sec">
+						<input  type="text" name="first_name" id="id_first_name" placeholder="ФИО*" required>
+						<input  type="text" name="numbers" id="id_numbers" placeholder="Телефон*" required>
+						<input  type="text" name="email" id="id_email" placeholder="e-mail*" required>
+						<textarea  name="address" id="id_address" placeholder="Адрес доставки*" required>Адрес доставки: Самовывоз</textarea>
+						<textarea   name="comment" id="id_comment" placeholder="Комментарии"></textarea>
+					<!-- </form> --></div>
+					<div class="flex p1 last">
+						<div class="agree">
+							<input type="checkbox" class="checkbox" id="ch111" required>
+							<label for="ch111">Даю согласие на обработку данных</label>
+						</div>
+						<div class="button">
+							<button>ОФОРМИТЬ ЗАКАЗ</button>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+
+			<div class="right-side">
+				<div class="result">
+					<div class="content">
+						<table class="other">
+							<tr>
+								<td>Товаров на сумму</td>
+								<td id="tovar">{{ basket.get_total_price }} ₽</td>
+							</tr>
+							<tr>
+								<td>Доставка:</td>
+								<td id="dosasdasdt">0 ₽</td>
+							</tr>
+							<tr class="border">
+								<td>Итого:</td>
+								<td id="total1111">{{ basket.get_total_price }} ₽</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			
+
+			</div>
+		</div>
+		
+
+	</div>
+	</form>
+<script type="text/javascript">
+
+function radiocheck(a) {
+		
+		if (a ==1){
+			var tovar = "{{ basket.get_total_price }}";
+			var theElement = document.getElementById("id_address");
+			theElement.innerHTML = "Адрес доставки: Самовывоз"
+			document.getElementById("dosasdasdt").innerHTML="0 ₽";
+			document.getElementById("total1111").innerHTML=tovar + " ₽";
+
+		};
+		if (a ==2){
+					
+					var theElement = document.getElementById("id_address");
+					theElement.innerHTML = ""
+					var tovar = "{{ basket.get_total_price }}";
+					var g =250;
+					document.getElementById("dosasdasdt").innerHTML=g+" ₽";
+					var all = g +Number(tovar);
+					document.getElementById("total1111").innerHTML=all + " ₽";
+					// alert(tovar);
+					// var dost1 = document.getElementById("total1111");
+
+					// var total1 = document.getElementById("total");
+					
+					// var z = tovar + g ;
+					// var total1.innerHTML = total;
+					// var dost1.innerHTML = "250";
+
+
+
+    	};
+    			}
+</script>
+
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

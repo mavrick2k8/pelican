@@ -1,0 +1,16 @@
+<p><font size="4"><b><i>Здравствуйте!</i></b></font></p>
+<p><font size="4"><i>Поступила оплата  <b> по заказу </b>№ {{ oplata }}</i></font></p>
+<p><font size="4"><i>ФИО  {{ fio }}</i></font></p>
+<p><font size="4"><i>Номер для связи  {{ number }}</i></font></p>
+<p><font size="4"><i>Адрес доставки  {{ adress }}</i></font></p>
+<p><font size="4"><i>Доставка  {{ dostavka }}</i></font></p>
+<p><font size="4"><i>Стоимость доставки  {{ dostavkacena }}</i></font></p>
+<p><font size="4"><i>Закзанный товар :</i></font></p>
+
+{% for i in tovar %}
+<p><font size="4"><i>Товар: {{ i.product }} цвет-размер: {{ i.atributeproduct }} количество: {{ i.quantity }}  </i></font></p>
+{% endfor %}
+
+
+<p><u><b>__________________________</b></u></p>
+<p>С уважением, <i><b>интернет-магазине "Всемпостель"</b></i></p>

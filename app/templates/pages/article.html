@@ -1,0 +1,162 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+
+    <style type="text/css">
+    	pre {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	overflow: auto;
+	overflow-y: hidden;
+	font-size: 12px;
+	line-height: 20px;
+	background: #efefef;
+	border: 1px solid #777;
+	background: url(lines.png) repeat 0 0;
+}
+    </style>
+		<div class="back-link">
+			<a href="/">Главная/ </a><a href="/news">Новости и статьи/ </a><a href="#">{{news.name}}</a>
+		</div>
+		<h1>{{news.name}}</h1>
+		<div class="action-page article">
+			<div class="content">
+				<img src="{{news.image.url}}" width="265" height="265">
+				<p>{{news.descriptions |linebreaks}}</p>
+				<!-- <p>По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.</p>
+				<p>Сайт рыбатекст поможет дизайнеру, верстальщику, вебмастеру сгенерировать несколько абзацев более менее осмысленного текста рыбы на русском языке, а начинающему оратору отточить навык публичных выступлений в домашних условиях. При создании генератора мы использовали небезизвестный универсальный код речей. Текст генерируется абзацами случайным образом от двух до десяти предложений в абзаце, что позволяет сделать текст более привлекательным и живым для визуально-слухового восприятия.</p>
+				<p>По своей сути рыбатекст является альтернативой традиционному lorem ipsum, который вызывает у некторых людей недоумение при попытках прочитать рыбу текст. В отличии от lorem ipsum, текст рыба на русском языке наполнит любой макет непонятным смыслом и придаст неповторимый колорит советских времен.</p> -->
+				<div class="clear"></div>
+				<a href="/news" class="back"><span>Вернуться к списку новостей</span></a>
+			</div>
+			{% if popular %}
+			<h2>ПОПУЛЯРНЫЕ ТОВАРЫ</h2>
+			<div class="popular-slider">
+				{% for i in popular %}
+						<div class="item">
+							<a href="/{{i.get_absolute_url}}"><img src="{{i.image.url}}" ></a>
+							<div class="name">{{i.name}}</div>
+							<div class="content">
+								<div class="flex">
+									{% for sv in i.atributeproduct_set.all %}
+									{%if sv.atr.name == 'Материал' %}
+									<div class="n">{{ sv.atrvalue }}</div>
+										{%endif%}
+										{% endfor %}
+										<div class="price">
+											<div class="new" id="price-{{i.id}}">{{ i.torg.0.price }} ₽</div>
+											<!-- <div class="old">5 000 ₽</div> -->
+										</div>
+								</div>
+								<label>Размер</label>
+								<select tabindex="0" onchange="cc(this.options[this.selectedIndex].getAttribute('price'),this.options[this.selectedIndex].getAttribute('id'));">
+									{% for z in i.torg %}
+								
+									<option  price="{{z.price}}" id="{{z.prod.id}}">{{z}}</option>
+								
+									{%endfor%}
+									<!-- <option>Евро</option>
+									<option>Евро</option> -->
+								</select>
+							</div>
+						</div>
+						{% endfor %}
+	<!-- 			<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div> -->
+			</div>
+			{% endif %}
+		</div>
+	</div>
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

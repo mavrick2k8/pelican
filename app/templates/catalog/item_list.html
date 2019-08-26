@@ -1,0 +1,355 @@
+{% load static %}
+
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+    <script>
+	  $( function() {
+	    $( "#slider-range" ).slider({
+	      range: true,
+	      min: {{price_min1}},
+	      max: {{price_max1}},
+	      step: 50,
+	      values: [ {{price_min1}}, {{price_max1}} ],
+	      slide: function( event, ui ) {
+	        $( "#amount" ).val( ui.values[ 0 ] );
+	        $( "#amount2" ).val( ui.values[ 1 ] );
+	      }
+	    });
+	    $( "#amount" ).val( $( "#slider-range" ).slider( "values", 0 ) );
+	    $( "#amount2" ).val( $( "#slider-range" ).slider( "values", 1 ) );
+	  } );
+	</script>
+	<div class="wrap">
+		<div class="back-link">
+			<a href="/">Главная/ </a><a href="/catalog">Каталог/ </a><a href="/{{s.get_absolute_url}}"> {{s}}</a>
+		</div>
+	</div>
+	
+		<div class="catalog-page">
+			<div class="flex">
+				<div class="filtr">
+					<a class="close"><i class="fa fa-close"></i></a>
+					<div class="name">ФИЛЬТР ТОВАРОВ</div>
+					<div class="items">
+						
+					<!--	<div class="item">
+							<div class="n">Расцветка <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="color-select">
+									<div class="color w" style="background: #fff;"></div>
+									<div class="color" style="background: #898989;"></div>
+									<div class="color" style="background: #1460A7;"></div>
+									<div class="color" style="background: #12C158;"></div>
+									<div class="color" style="background: #FFC700;"></div>
+									<div class="color" style="background: #000;"></div>
+									<div class="color w" style="background: #fff;"></div>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="n">Ткань <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									<input type="checkbox" id="c1"><label for="c1">Батист</label><br/>
+									<input type="checkbox" id="c2"><label for="c2">Жаккард</label><br/>
+									<input type="checkbox" id="c3"><label for="c3">Лен 1</label><br/>
+									<input type="checkbox" id="c4"><label for="c4">Перкаль</label>
+									<div class="hidden">
+										<input type="checkbox" id="c5"><label for="c5">Батист</label><br/>
+										<input type="checkbox" id="c6"><label for="c6">Жаккард</label><br/>
+										<input type="checkbox" id="c7"><label for="c7">Лен 1</label><br/>
+										<input type="checkbox" id="c8"><label for="c8">Перкаль</label>
+									</div>
+									<a></a>
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="n">Размер <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									<input type="checkbox" id="c11"><label for="c11">50х70</label><br/>
+									<input type="checkbox" id="c12"><label for="c12">20х40</label><br/>
+									<input type="checkbox" id="c13"><label for="c13">60х300</label><br/>
+									<input type="checkbox" id="c14"><label for="c14">60х100</label>
+									<div class="hidden">
+										<input type="checkbox" id="c11"><label for="c11">50х70</label><br/>
+										<input type="checkbox" id="c12"><label for="c12">20х40</label><br/>
+										<input type="checkbox" id="c13"><label for="c13">60х300</label><br/>
+										<input type="checkbox" id="c14"><label for="c14">60х100</label>
+									</div>
+									<a></a>
+								</div>
+							</div>
+						</div> -->
+					<form method="GET">
+						<div class="item">
+							<div class="n">Цена <i class="fa fa-angle-down"></i></div>
+							<div class="content" style="display: block;">
+								<div class="price-slider">
+									<div class="flex">
+										<div><input type="text" name="min" id="amount" value="{{price_min }}" > ₽</div>
+										<div><input type="text" name="max" id="amount2" value="{{price_max}}" > ₽</div>
+									</div>
+									<div id="slider-range"></div>
+								</div>
+							</div>
+						</div>
+					{% regroup tabar by atr__name as tabar_list %}
+					{% for atr__name in tabar_list %}
+						<div class="item">
+							<div class="n">{{ atr__name.grouper }}<i class="fa fa-angle-down"></i></div>
+							<div class="content" style="display: block;">
+								<div class="select">
+									{% for item in atr__name.list %}
+											
+									<input type="checkbox" name="{{ atr__name.grouper }}" id="c1" value="{{ item.atrvalue__name}}"><label for="c1">{{ item.atrvalue__name}}</label><br/>
+									{% endfor %}
+
+
+
+								
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						
+						<!-- <div class="item">
+							<div class="n">Размер <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									<input type="checkbox" id="c11"><label for="c11">50х70</label><br/>
+									<input type="checkbox" id="c12"><label for="c12">20х40</label><br/>
+									<input type="checkbox" id="c13"><label for="c13">60х300</label><br/>
+									<input type="checkbox" id="c14"><label for="c14">60х100</label>
+									<div class="hidden">
+										<input type="checkbox" id="c11"><label for="c11">50х70</label><br/>
+										<input type="checkbox" id="c12"><label for="c12">20х40</label><br/>
+										<input type="checkbox" id="c13"><label for="c13">60х300</label><br/>
+										<input type="checkbox" id="c14"><label for="c14">60х100</label>
+									</div>
+									<a></a>
+								</div>
+							</div>
+						</div> -->
+						<!-- <div class="item">
+							<div class="n">Наволочка <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									Варианты
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="n">Бренд <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									Варианты
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="n">Простыня <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									Варианты
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="n">Наволочка <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									Варианты
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="n">Бренд <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									Варианты
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="n">Простыня <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									Варианты
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="n">Наволочка <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									Варианты
+								</div>
+							</div>
+						</div>
+						<div class="item">
+							<div class="n">Бренд <i class="fa fa-angle-down"></i></div>
+							<div class="content">
+								<div class="select">
+									Варианты
+								</div>
+							</div>
+						</div> -->
+						<button type="submit">ПОДОБРАТЬ</button>
+						</form>
+
+					</div>
+				</div>
+				<div class="content">
+					<!-- <div class="brands">
+						{% for i in brand %}
+						{% if i.image %}
+						<div class="item"><img src="{{i.image.url}}"></div>
+						{% endif %}
+						{% endfor %}
+						<div class="item"><img src="{% static 'img/brand.png'%}"></div>
+						<div class="item"><img src="{% static 'img/brand.png'%}"></div>
+						<div class="item"><img src="{% static 'img/brand.png'%}"></div>
+						<div class="item"><img src="{% static 'img/brand.png'%}"></div>
+						<div class="item"><img src="{% static 'img/brand.png'%}"></div>
+						<div class="item"><img src="{% static 'img/brand.png'%}"></div>
+					</div> -->
+					<div class="filtr-btn">ФИЛЬТР ТОВАРОВ</div>
+					<!-- <div class="sort">
+						<span>Сортировать</span> по: <a><span>По убыванию цены</span> <i class="fa fa-angle-down"></i></a>
+						<div class="sub">
+							<input type="checkbox" id="s1"><label for="s1">По возрастанию цены</label><br/>
+							<input type="checkbox" id="s2"><label for="s2">По убыванию цены</label><br/>
+							<input type="checkbox" id="s3"><label for="s3">Популярные</label><br/>
+							<input type="checkbox" id="s4"><label for="s4">Новинки</label>
+						</div>
+					</div> -->
+					<!-- <nav class="top-text-menu flex">
+						<a class="a1">Как выбрать?</a>
+						<a class="a2">Качество</a>
+						<a class="a3">Ткань</a>
+						<a class="a4">Как заказать</a>
+					</nav>
+					<div class="top-texts">
+						<div class="item item1">
+							<a class="close"></a>
+							<p>Как выбрать? Сначала прочитайте статью про размеры постельного белья. По нашему мнению идеальное постельное бельё:</p>
+							<ul>
+								<li>Во-первых, должно пропускать воздух и влагу, впитывать пот. Простыни и пододеяльники должны быть из натуральных тканей: хлопок, лен, шелк.</li>
+								<li>Во-вторых, должно быть стрессоустойчиво, ведь белье нужно часто стирать. Прочная ткань дольше прослужит. Мягкий и нежный материал после нескольких стирок может обзавестись дыркам и или швами, но на ощупь такой материал может быть гораздо приятнее, поэтому выбор за вами. Есть также материалы имеющие в своем составе другие материалы с целью укрепления первых, например полусинтетические ткани.</li>
+								<li>В-третьих — это качество красителей. Полинявшие после первой стирки простыни вряд ли порадуют вас своим унылым видом. Кроме того, сомнительные красители могут вызывать аллергию. Постельное белье соприкасается с телом человека длительное время, поэтому будьте осторожны при выборе. В нашем магазине только качественные товары, поэтому вы можете выбрать любой из них и быть уверены в своей безопасности.</li>
+							</ul>
+						</div>
+						<div class="item item2">
+							<a class="close"></a>
+							<p>Текст 2222</p>
+						</div>
+						<div class="item item3">
+							<a class="close"></a>
+							<p>Текст 3333</p>
+						</div>
+						<div class="item item4">
+							<a class="close"></a>
+							<p>Текст 4444</p>
+						</div>
+					</div> -->
+					<div class="list flex">
+						{% for i in products %}
+						<div class="item">
+							{% if i.hit %}
+							<div class="badge c1">ХИТ!</div>
+							{% endif %}
+							{% if i.sale %}
+							<div class="badge c2">СКИДКА </div>
+							{% endif %}
+							{% if i.new %}
+							<div class="badge c3">НОВИНКА</div>
+							{% endif %}
+							
+							
+							
+							<a href="/{{i.get_absolute_url}}"><img src="" width="220" height="220"></a>
+							<div class="name">{{i.name}}</div>
+							<div class="content">
+								<div class="flex">
+								{% for sv in i.atributeproduct_set.all %}
+								{%if sv.atr.name == 'Материал' %}
+								<div class="n">{{ sv.atrvalue }}</div>
+								{%endif%}
+								{% endfor %}
+									
+									<div class="price">
+										<div class="new" id="price-{{i.id}}">{{ i.torg.0.price }} ₽</div>
+										<!-- <div class="old">5 000 ₽</div> -->
+									</div>
+								</div>
+								<label>Размер</label>
+								<select tabindex="0" onchange="ccc(this.options[this.selectedIndex].getAttribute('price'),this.options[this.selectedIndex].getAttribute('id'),this.options[this.selectedIndex].getAttribute('torg'));">
+									{% for z in i.torg %}
+								
+									<option  price="{{z.price}}" torg="{{z.id}}" id="{{z.prod.id}}">{{z}}</option>
+								
+									{%endfor%}
+
+								</select>
+								
+								<input  type="hidden" id="sel-{{i.id}}" value="{{i.torg.0.id}}">
+								
+								<div class="flex">
+									<button class="b1" onclick="zxc('sel-{{i.id}}')">В КОРЗИНУ</button>
+									<a href="/{{i.get_absolute_url}}"><button class="b2">ПОДРОБНЕЕ</button></a>
+								</div>
+							</div>
+						</div>
+						{% endfor %}
+						{% for product in products %}
+						{% endfor %}
+						{%if products.paginator.num_pages > 1 %}
+
+						<nav class="top-text-menu flex">
+							 {% if products.has_previous %}
+						<a class="a1" href="?page={{ products.previous_page_number }}" >Предыдущая</a>
+						 {% endif %}
+						<a class="a2"> {{ products.number }}  из  {{ products.paginator.num_pages }}.</a>
+						 {% if products.has_next %}
+						<a class="a3" href="?page={{ products.next_page_number }}">Следующая</a>
+						<!-- <a class="a4">Как заказать</a> -->
+						 {% endif %}
+						</nav>
+						{%endif%}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+		
+   
+<script type="text/javascript">
+
+function zxc(g) {
+	// alert(g);
+    var newssss = document.getElementById(g).value;
+    // var quant = document.getElementById('quantity_value').value;
+    $.ajax({
+		url: "/basket/add",
+		cache: false,
+		type: "GET",
+		data: {product: newssss,quantity:1}, 
+		success: function(data){
+        }
+    });
+};
+
+function ccc(a,b,c) {
+    				var theElement = document.getElementById("price-"+b);
+        			theElement.innerHTML = a +  " ₽";
+        			document.getElementById("sel-"+b).value = c;
+    			}
+</script>
+
+	{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

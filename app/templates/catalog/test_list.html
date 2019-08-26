@@ -1,0 +1,27 @@
+{% load static %}
+
+
+
+{% for product in products %}
+
+{{product}}
+СВОЙСТВА
+{% for sv in product.atributeproduct_set.all %}
+    	<p>{{ sv.atr }}
+    	{{ sv.atrvalue }}
+	{% endfor %}
+
+
+{% for i in product.torg %}
+<p>АТРИБУТЫ 
+	{% for atr in i.saleatributeproduct_set.all %}
+    	<p>{{ atr.saleatr }}
+    	{{ atr.saleatrvalue }}
+	{% endfor %}
+<p>ЦЕНА
+{{i.price}}
+{%endfor%}
+
+
+
+{%endfor%}

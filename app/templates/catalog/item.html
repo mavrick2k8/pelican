@@ -1,0 +1,419 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+    </div>
+    	<div class="wrap">
+		<div class="back-link">
+			<a href="/">Главная/ </a><a href="/catalog">Каталог/ </a><a href="/{{s.get_absolute_url}}"> {{s}}/</a><a href="/{{product.get_absolute_url}}"> {{product}}</a>
+		</div>
+	
+		<div class="item-page">
+			<div class="flex">
+				<div class="photos">
+					<div class="slider-for">
+						<div class="item"><img src=""></div>
+						{% for i in product.torg %}
+						{% if i.image %}<div class="item"><img src=""></div>{%endif%}
+						{%endfor%}
+					</div>
+					<div class="slider-nav">
+						<div class="item"><img src=""></div>
+						{% for i in product.torg %}
+
+						{% if i.image %}<div class="item"><img src=""></div>{%endif%}
+						{%endfor%}
+					</div>
+				</div>
+					
+				<div class="text">
+					<div class="name">{{product.name}}</div>
+					{% if product.descriptions %}
+					{{product.descriptions |truncatewords:100}}
+					{% else %}
+					Описание скоро появится
+					{% endif%}
+
+				</div>
+				<div class="right-block">
+					<div class="name">{{product.name}}</div>
+					<div class="content">
+						<div class="flex">
+						
+						{% for sv in product.atributeproduct_set.all %}
+    					
+    					
+    					
+						
+								{%if sv.atr.name == 'Материал' %}
+								<div class="n">{{ sv.atrvalue }}</div>
+								{%endif%}
+						
+						{% endfor %}
+							<div class="price">
+								<label>Цена</label>
+								<div class="info">
+									
+									
+									<div class="new" id="price-{{product.id}}">{{ product.torg.0.price }} ₽</div>
+									<!-- <div class="old">5 000 ₽</div> -->
+									
+								</div>
+							</div>
+						</div>
+						<div class="select">
+							
+							<label>Размер</label>
+							<select   onchange="ccc(this.options[this.selectedIndex].getAttribute('price'),this.options[this.selectedIndex].getAttribute('id'),this.options[this.selectedIndex].getAttribute('torg'));">
+								{% for i in product.torg %}
+								
+								<option id="{{i.prod.id}}" torg="{{i.id}}" price="{{i.price}}">{{i}}</option>
+								
+								{%endfor%}
+								<!-- <option>Евро</option> -->
+							</select>
+							<input type="hidden" id="sel" value="{{ product.torg.0.id }}">
+						</div>
+
+						<div class="col">
+							<label>Количество</label>
+							<div class="number">
+								<span class="minus"><img src="{% static 'img/minus.png'%}"></span>
+								<input id="quantity_value" type="text" value="1"/>
+								<span class="plus"><img src="{% static 'img/plus.png'%}"></span>
+							</div>
+						</div>
+						<button onclick="zxc();">КУПИТЬ</button>
+					</div>
+				</div>
+			</div>
+			<div class="tabs">
+				<ul class="tabNavigation">
+					<li><a href="#t2">ХАРАКТЕРИСТИКИ</a></li>
+					{% if product.descriptions %}
+					<li><a href="#t1">ОПИСАНИЕ</a></li>
+					{% endif%}
+					<!-- <li><a href="#t3">РЕКОМЕНДАЦИИ ПО УХОДУ</a></li> -->
+				</ul>
+				{% if product.descriptions %}
+				<div id="t1">
+					<p>{{product.descriptions |linebreaks}} </p>
+				</div>
+				{% endif%}
+				<div id="t2">
+					<table>
+						
+
+						{% for sv in product.atributeproduct_set.all %}
+    					
+    					
+    					<tr>
+							<td>{{ sv.atr }} </td>
+							<td>{{ sv.atrvalue }}</td>
+						</tr>
+						{% endfor %}
+						
+						<!-- <tr>
+							<td>ПРОСТЫНЯ</td>
+							<td>150х220</td>
+						</tr>
+						<tr>
+							<td>НАВОЛОЧКИ</td>
+							<td>70х70 (2шт)</td>
+						</tr>
+						<tr>
+							<td>РАСЦВЕТКА </td>
+							<td>Взрослая</td>
+						</tr>
+						<tr>
+							<td>ПРОСТЫНЯ</td>
+							<td>150х220</td>
+						</tr>
+						<tr>
+							<td>НАВОЛОЧКИ</td>
+							<td>70х70 (2шт)</td>
+						</tr> -->
+					</table>
+				</div>
+				<!-- <div id="t3">
+					333
+				</div> -->
+			</div>
+		</div>
+		<div class="sliders">
+			<h2>ВЫ СМОТРЕЛИ</h2>
+			<div class="popular-slider">
+				{% for i in lastview %}
+						<div class="item">
+							<a href="/{{i.get_absolute_url}}"><img src="{{i.image.url}}"  height="218" width="149.5"></a>
+							<div class="name">{{i.name}}</div>
+							<div class="content">
+								<div class="flex">
+									{% for sv in i.atributeproduct_set.all %}
+									{%if sv.atr.name == 'Материал' %}
+									<div class="n">{{ sv.atrvalue }}</div>
+										{%endif%}
+										{% endfor %}
+										<div class="price">
+											<div class="new" id="price-{{i.id}}-last">{{ i.torg.0.price }} ₽</div>
+											<!-- <div class="old">5 000 ₽</div> -->
+										</div>
+								</div>
+								<label>Размер</label>
+								<select tabindex="0" onchange="cc(this.options[this.selectedIndex].getAttribute('price'),this.options[this.selectedIndex].getAttribute('id'));">
+									{% for z in i.torg %}
+								
+									<option  price="{{z.price}}" id="{{z.prod.id}}-last">{{z}}</option>
+								
+									{%endfor%}
+									<!-- <option>Евро</option>
+									<option>Евро</option> -->
+								</select>
+							</div>
+						</div>
+						{% endfor %}
+				<!-- <div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+			</div> -->
+		</div>
+			{% if popular %}
+			<h2>ПОПУЛЯРНЫЕ ТОВАРЫ </h2>
+			<div class="popular-slider">
+				{% for i in popular %}
+						<div class="item">
+							<a href="/{{i.get_absolute_url}}"><img src="{{i.image.url}}" height="218" width="149.5"></a>
+							<div class="name">{{i.name}}</div>
+							<div class="content">
+								<div class="flex">
+									{% for sv in i.atributeproduct_set.all %}
+									{%if sv.atr.name == 'Материал' %}
+									<div class="n">{{ sv.atrvalue }}</div>
+										{%endif%}
+										{% endfor %}
+										<div class="price">
+											<div class="new" id="price-{{i.id}}-pop">{{ i.torg.0.price }} ₽</div>
+											<!-- <div class="old">5 000 ₽</div> -->
+										</div>
+								</div>
+								<label>Размер</label>
+								<select tabindex="0" onchange="cc(this.options[this.selectedIndex].getAttribute('price'),this.options[this.selectedIndex].getAttribute('id'));">
+									{% for z in i.torg %}
+								
+									<option  price="{{z.price}}" id="{{z.prod.id}}-pop">{{z}}</option>
+								
+									{%endfor%}
+									<!-- <option>Евро</option>
+									<option>Евро</option> -->
+								</select>
+							</div>
+						</div>
+						{% endfor %}
+				<!-- <div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div>
+				<div class="item">
+					<a href="#"><img src="{% static 'img/popular.jpg'%}"></a>
+					<div class="name">Постельное белье "Бурбон"</div>
+					<div class="content">
+						<div class="flex">
+							<div class="n">Сатин-жаккард</div>
+							<div class="price">
+								<div class="new">4 500 ₽</div>
+								<div class="old">5 000 ₽</div>
+							</div>
+						</div>
+						<label>Размер</label>
+						<select>
+							<option>Евро</option>
+							<option>Евро</option>
+						</select>
+					</div>
+				</div> -->
+				{% endif%}
+			</div>
+			
+		</div>
+	</div>
+
+<script type="text/javascript">
+function zxc() {
+    var newssss = document.getElementById('sel').value;
+    // alert("Товар добавлен в корзину");
+    var quant = document.getElementById('quantity_value').value;
+    $.ajax({
+		url: "/basket/add",
+		cache: false,
+		type: "GET",
+		data: {product: newssss,quantity:quant}, 
+		success: function(data){
+        }
+    });
+};
+
+function ccc(a,b,c) {
+    				var theElement = document.getElementById("price-"+b);
+        			theElement.innerHTML = a +  " ₽";
+        			document.getElementById("sel").value = c;
+    			}
+</script>
+
+{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}

@@ -1,0 +1,204 @@
+{% load static %}
+{% include 'base.html' %}
+{% block content %}
+    {% endblock %}
+		<div class="back-link">
+			<a href="#">Главная / Моя корзина</a>
+		</div>
+		<div class="cart-page flex">
+			<div class="left-side">
+				<table class="tbl1">
+					<thead>
+						<tr>
+							<td>Наименование товара</td>
+							<td>Цена</td>
+							<td>Количество</td>
+							<td>Сумма</td>
+							<td></td>
+						</tr>
+					</thead>
+					<tbody>
+
+
+
+
+
+
+
+						{% for item in basket %}
+            			{% with product=item.product %}
+
+            
+			            {{ item.update_quantity_form.update }}
+			             {% csrf_token %}
+						<tr>
+							<td>
+								<div class="image">
+									
+									<img src="{{item.image}}" width="158" height="110">
+
+									<div class="text">
+										<span>{{ product }}</span>
+										{{ item.name }}
+									</div>
+									<div class="clear"></div>
+								</div>
+							</td>
+							<td>
+								<div class="price">
+									<div class="new">{{ item.price }} ₽</div>
+									<!-- <div class="old">5 000 ₽</div> -->
+								</div>
+							</td>
+							<td>
+								<div class="number">
+									<span class="minus" onclick="zminus({{ item.id }})"><img src="{% static 'img/minus.png'%}" ></span>
+									<input type="text" value="{{ item.quantity }}"/>
+									<span class="plus" onclick="zplus({{ item.id }})"><img src="{% static 'img/plus.png'%}" ></span>
+								</div>
+							</td>
+							<td>
+								<div class="price">
+									<div class="new">{{ item.total_price }} ₽</div>
+								</div>
+							</td>
+							<td><a class="delete" href="/basket/remove/{{item.id}}"></a></td>
+						</tr>
+						   {% endwith %}
+     					{% endfor %}
+						<!-- <tr>
+							<td>
+								<div class="image">
+									<img src="{% static 'img/cart.jpg'%}">
+									<div class="text">
+										<span>Постельное белье бурбон</span>
+										Размер: Евро
+									</div>
+									<div class="clear"></div>
+								</div>
+							</td>
+							<td>
+								<div class="price">
+									<div class="new">4 500 ₽</div>
+									<div class="old">5 000 ₽</div>
+								</div>
+							</td>
+							<td>
+								<div class="number">
+									<span class="minus"><img src="{% static 'img/minus.png'%}"></span>
+									<input type="text" value="1"/>
+									<span class="plus"><img src="{% static 'img/plus.png'%}"></span>
+								</div>
+							</td>
+							<td>
+								<div class="price">
+									<div class="new">4 500 ₽</div>
+								</div>
+							</td>
+							<td><a class="delete"></a></td>
+						</tr>
+						<tr>
+							<td>
+								<div class="image">
+									<img src="{% static 'img/cart.jpg'%}">
+									<div class="text">
+										<span>Постельное белье бурбон</span>
+										Размер: Евро
+									</div>
+									<div class="clear"></div>
+								</div>
+							</td>
+							<td>
+								<div class="price">
+									<div class="new">4 500 ₽</div>
+									<div class="old">5 000 ₽</div>
+								</div>
+							</td>
+							<td>
+								<div class="number">
+									<span class="minus"><img src="{% static 'img/minus.png'%}"></span>
+									<input type="text" value="1"/>
+									<span class="plus"><img src="{% static 'img/plus.png'%}"></span>
+								</div>
+							</td>
+							<td>
+								<div class="price">
+									<div class="new">4 500 ₽</div>
+								</div>
+							</td>
+							<td><a class="delete"></a></td>
+						</tr> -->
+					</tbody>
+				</table>
+				<div class="flex">
+					<div class="mail-send">
+						<!-- Не готовы оформить заказ сейчас? Вы можете отправить выбранный список товаров себе на почту.
+						<span>ОТПРАВИТЬ НА ПОЧТУ</span>
+						Укажите адрес e-mail куда следует отправить список товаров корзины
+						<input type="text" placeholder="ВАШ E-MAIL">
+						<button>ОТПРАВИТЬ</button> -->
+					</div>
+					<table class="tbl2">
+						<tr>
+							<td>Итого:</td>
+							<td>{{ basket.get_total_price }} ₽</td>
+						</tr>
+						<tr>
+							<!-- <td>Ваша экономия: </td> -->
+							<!-- <td>1500 ₽</td> -->
+						</tr>
+					</table>
+				</div>
+			</div>
+			<div class="right-side">
+				<div class="result">
+					<div class="content">
+						<!-- <input type="text" placeholder="ВВЕДИТЕ КОД ДЛЯ СКИДКИ"> -->
+						<table>
+							<tr>
+								<td>Итого:</td>
+								<td>{{ basket.get_total_price }} ₽</td>
+							</tr>
+							<tr>
+								<!-- <td>Ваша экономия: </td> -->
+								<!-- <td>1500 ₽</td> -->
+							</tr>
+						</table>
+					</div>
+					<button onclick="window.location.href='/order'">ОФОРМИТЬ ЗАКАЗ</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+<script>
+    
+ 
+
+function zminus(a) {
+        $.ajax({
+          url: "/basket/add",
+          cache: false,
+          type: "GET",
+          data: {product: a,quantity:-1}, 
+          success: function(data){
+          location.reload() ;
+              }
+            });   
+   }
+function zplus(a) {
+        $.ajax({
+          url: "/basket/add",
+          cache: false,
+          type: "GET",
+          data: {product: a,quantity:1}, 
+          success: function(data){
+          location.reload() ;
+              }
+            });
+   }
+</script>
+	{% include 'footer.html' %}
+{% block footer %}
+    {% endblock %}
